@@ -1,0 +1,8 @@
+select uid,X,Y from coordniates order by id desc limit 1
+
+Select * from 
+(select uid, max(id) as "id" from coordniates group by uid) A
+left join 
+(Select * from coordniates) B
+ON
+A.id = B.id
