@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testing animations</title>
+  <meta charset="utf-8" />
+  <script src="http://cdn.leafletjs.com/leaflet-0.6.1/leaflet.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+
+  <style>
+  #info {
+    background-color:#c8ba09;
+  </style>
+</head>
+<body>
+  <div id="info"style="width: 960px;"></div>
+  <script>
+  var minArea, curColor;
+
+  var svg = d3.select("body").append("svg")
+    .attr("width", 500)
+    .attr("height", 500);
+    var circle = svg.append('circle').attr('cx',120).attr('cy',190).attr('r',70).style('fill','white').style("stroke","black")
+		                   .style("stroke-width",2).style("stroke-dasharray", ("4, 2")).on( function(d){
+			d3.select(this).attr("stroke-width",40).style("fill","grey").style("opacity",0.5).attr("r",50)})	
+			
+	var rectangle = svg.append('rect').attr('width',120).attr('height',130).attr('x',255).attr('y',125).style('fill','white').style("stroke","black")
+		                   .style("stroke-width",2).style("stroke-dasharray", ("4, 2")).on( function(d){
+			d3.select(this).attr("stroke-width",40).style("fill","grey").style("opacity",0.5).attr("r",50)}) 
+
+			
+	var rectangle = svg.append('rect').attr('width',120).attr('height',130).attr('x',255).attr('y',325).style('fill','white').style("stroke","black")
+		                   .style("stroke-width",2).style("stroke-dasharray", ("4, 2")).on( function(d){
+			d3.select(this).attr("stroke-width",40).style("fill","grey").style("opacity",0.5).attr("r",50)})
+			
+	var rectangle = svg.append('rect').attr('width',120).attr('height',130).attr('x',60).attr('y',325).style('fill','white').style("stroke","black")
+				.style("stroke-width",2).style("stroke-dasharray", ("4, 2")).on( function(d){
+			d3.select(this).attr("stroke-width",40).style("fill","grey").style("opacity",0.5).attr("r",50)})
+
+
+	var circle = svg.append("circle")
+    .attr("id", "circ")
+    .attr("cx", Math.random() * 10)
+    .attr("cy", Math.random() * 100)
+    .attr("r", 5 + "px")
+	.style('fill','red')
+    .transition().each("end", function () {
+            myTransf();
+        });
+
+
+	function myTransf() {
+    d3.select("#circ").transition().duration(7000)
+        .attr("cx", Math.random() * 500) // change this to random 2px 
+        .attr("cy", Math.random() * 500) // change this to random 2px
+        .each("end", function () {
+        myTransf();
+    });
+}
+
+  function render() {
+    var n = 0;
+    
+    var color = 'rgb(' + curColor.r + ',' + curColor.g + ',' + curColor.b + ')'
+    circles.attr('cx',minArea).style('fill',color);
+
+    console.log(color)
+
+    //text.text(formatArea(minArea) + "px² / " + formatPercent(n / m));
+  }
+
+  </script>
+ </body>
+</html>
